@@ -1,0 +1,23 @@
+{
+    "name": "naxa/naxa-php",
+    "description": "The PHP SDK of the Naxa public API: sign people in with Naxa at the FAPI 2.0 level (pushed requests, PKCE, DPoP, private_key_jwt), read what they allowed, receive signed events. No dependency.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.3",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-sodium": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Naxa\\Sdk\\": "src/"
+        }
+    },
+    "bin": [
+        "bin/naxa-keys"
+    ],
+    "scripts": {
+        "test": "php tests/run.php"
+    }
+}

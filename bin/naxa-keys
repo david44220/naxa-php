@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * Makes the two keys an application needs and prints them once:
+ *
+ *     php bin/naxa-keys
+ *
+ * The two secret keys go among the secrets of the application's server. The public key goes in
+ * the application's record, in the developer console.
+ */
+
+require dirname(__DIR__) . '/autoload.php';
+
+use Naxa\Sdk\Key;
+
+$client = Key::generate();
+$proofs = Key::generate();
+
+echo "# Keep these two lines among the secrets of your server. They are not shown again.\n";
+echo 'NAXA_CLIENT_KEY=' . $client->export() . "\n";
+echo 'NAXA_DPOP_KEY=' . $proofs->export() . "\n";
+echo "\n";
+echo "# In the developer console, add this PUBLIC key to your application's record,\n";
+echo "# under a name of your choice (NAXA_KEY_ID), for instance \"main-" . date('Y') . "\":\n";
+echo '#   ' . $client->publicKey() . "\n";
